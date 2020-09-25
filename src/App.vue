@@ -1,14 +1,23 @@
 <template>
   <div id="app">
-    
+    <vMainWrapper />
   </div>
 </template>
 
 <script>
+import vMainWrapper from "./components/v-main-wrapper"
+
 export default {
   name: "App",
-  components: {},
+  components: {
+    vMainWrapper
+  },
 };
 </script>
 
-<style></style>
+<style lang="scss">
+* {
+  margin: 0;
+  padding: 0;
+}
+</style>
