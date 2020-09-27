@@ -14,7 +14,7 @@
 
 <script>
 export default {
-  name: "v-catalog-item",
+  name: 'v-catalog-item',
   components: {},
   props: {
     productData: {
@@ -30,7 +30,7 @@ export default {
   computed: {},
   methods: {
     addToCart() {
-      this.$emit('addToCart', this.productData.id)
+      this.$emit('addToCart', this.productData)
     }
   },
   watch: {},

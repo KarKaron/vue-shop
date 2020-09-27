@@ -6,7 +6,7 @@
         v-for="product in PRODUCTS"
         :key="product.id"
         :productData="product"
-        @addToCart="showCartItemId"
+        @addToCart="addToCart"
       />
     </div>
   </div>
@@ -19,7 +19,9 @@ import {mapActions, mapGetters} from 'vuex'
 
 export default {
   name: "v-catalog",
-  components: {vCatalogItem},
+  components: {
+    vCatalogItem
+  },
   props: {},
   data() {
     return {}
@@ -31,30 +33,27 @@ export default {
   },
   methods: {
     ...mapActions([
-      'GET_PRODUCTS_FROM_API'
+      'GET_PRODUCTS_FROM_API',
+      'ADD_TO_CART'
     ]),
-    showCartItemId(data) {
-      console.log(data)
+    addToCart(data) {
+      this.ADD_TO_CART(data)
     }
   },
   watch: {},
   mounted() {
     this.GET_PRODUCTS_FROM_API()
-    .then((responce) => {
+    /*.then((responce) => {
       if(responce.data) {
         console.log('Completed!')
       }
-    })
+    })*/
   }
 }
 </script>
 
 <style lang="scss">
-  .v-catalog {
-    text-align: center;
-    h1 {
-      margin: $margin*5 0;
-    }
+  .v-catalog {    
     &__list {
       display: flex;
       flex-wrap: wrap;
