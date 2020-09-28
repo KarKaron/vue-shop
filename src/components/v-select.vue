@@ -10,7 +10,7 @@
     </p>
     <div 
       class="v-select__options"
-      v-if="areOptionsVisible"
+      v-if="areOptionsVisible || isExpanded"
     >
       <p
         v-for="option in categories"
@@ -37,6 +37,10 @@ export default {
     selected: {
       type: String,
       default: 'Selected Option'
+    },
+    isExpanded: {
+      type: Boolean,
+      default: false
     }
   },
   data() {
