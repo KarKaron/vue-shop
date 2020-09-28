@@ -4,9 +4,14 @@
       <div class="v-catalog__link btn">Cart: {{CART.length}}</div>
     </router-link>
     <h1>Catalog</h1>
+    <vSelect 
+      :categories="categories"
+      :selected="selected"
+      @select="sortByCategories"
+    />
     <div class="v-catalog__list">
       <vCatalogItem
-        v-for="product in PRODUCTS"
+        v-for="product in filteredProducts"
         :key="product.id"
         :productData="product"
         @addToCart="addToCart"
@@ -17,23 +22,40 @@
 
 <script>
 
-import vCatalogItem from './v-catalog-item'
 import {mapActions, mapGetters} from 'vuex'
+import vCatalogItem from './v-catalog-item'
+import vSelect from '../v-select'
 
 export default {
-  name: "v-catalog",
+  name: 'v-catalog',
   components: {
-    vCatalogItem
+    vCatalogItem,
+    vSelect
   },
   props: {},
   data() {
-    return {}
+    return {
+      categories:[
+        {name: 'All', value: 0},
+        {name: 'Man', value: 1},
+        {name: 'Women', value: 2}
+      ],
+      selected: 'All',
+      sortedProducts: []
+    }
   },
   computed: {
     ...mapGetters([
       'PRODUCTS',
       'CART'
-    ])
+    ]),
+    filteredProducts() {
+      if (this.sortedProducts.length) {
+        return this.sortedProducts
+      } else {
+        return this.PRODUCTS
+      }
+    }
   },
   methods: {
     ...mapActions([
@@ -42,6 +64,16 @@ export default {
     ]),
     addToCart(data) {
       this.ADD_TO_CART(data)
+    },
+    sortByCategories(category) {
+      this.sortedProducts = []
+      let rem = this
+      this.PRODUCTS.map(function(item){
+        if (item.category === category.value) {
+          rem.sortedProducts.push(item)
+        }
+      })
+      this.selected = category.name
     }
   },
   watch: {},
