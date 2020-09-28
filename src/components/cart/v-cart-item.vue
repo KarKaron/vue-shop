@@ -1,6 +1,6 @@
 <template>
   <div class="v-cart-item">
-    <img class="v-cart-item__image" :src="require('../assets/images/' + cartItemData.image)" :alt="cartItemData.name">
+    <img class="v-cart-item__image" :src="require('../../assets/images/' + cartItemData.image)" :alt="cartItemData.name">
     <div class="v-cart-item__info">
       <h3>{{cartItemData.name}}</h3>
       <p>Article: {{cartItemData.article}}</p>
