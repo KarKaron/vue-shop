@@ -68,7 +68,7 @@ export default {
       position: absolute;
       top: 10px;
       right: 10px;
-      border: 1px solid #aeaeae;
+      border: 1px solid $shadow;
     }
   }
 </style>

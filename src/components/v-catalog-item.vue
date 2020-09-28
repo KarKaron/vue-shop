@@ -1,6 +1,6 @@
 <template>
   <div class="v-catalog-item">
-    <img class="v-catalog_item__img" :src="require('../assets/images/' + productData.image)" :alt="productData.name">
+    <img :src="require('../assets/images/' + productData.image)" :alt="productData.name">
     <p class="v-catalog-item__name">{{productData.name}}</p>
     <p class="v-catalog-item__price">Price: {{productData.price}} &#8381;</p>
     <button 
@@ -43,13 +43,22 @@ export default {
 <style lang="scss">
   .v-catalog-item {
     flex-basis: 25%;
-    box-shadow: 0 0 8px #e0e0e0;
+    box-shadow: 0 0 8px $shadow;
     padding: $padding*2;
     margin-bottom: $margin*2;
-  }
-
-  .v-catalog_item__img {
-    width: 250px;
-  }
-  
+    img {
+      width: 250px;
+    }
+    &__addToCart {
+      background: $blue;
+      border: 1px solid $blue;
+      color: $white;
+      border-radius: $radius;
+    }
+    &__addToCart:hover {
+      background: $orange;
+      border: 1px solid $orange;
+      color: $black;
+    }    
+  }  
 </style>

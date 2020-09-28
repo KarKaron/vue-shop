@@ -1,6 +1,16 @@
 $padding: 8px;
+$padding-btn: 3px 8px;
 $margin: 8px;
 $radius: 5px;
+$red: #ff0000;
+$blue: #0000ff;
+$blue-light: #00ccff; 
+$orange: #ffcc33;
+$white: #ffffff;
+$black: #000000;
+$green: #009900;
+$shadow: #eaeaea;
+
 
 * {
   margin: 0;
@@ -15,4 +25,8 @@ h1 {
   cursor: pointer;
   margin: $margin;
   padding: $padding;
+}
+
+.btn:hover {
+  box-shadow: 0 0 8px $shadow;
 }
