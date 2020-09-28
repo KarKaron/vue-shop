@@ -4,12 +4,30 @@
       <div class="v-catalog__link btn">Cart: {{CART.length}}</div>
     </router-link>
     <h1>Catalog</h1>
-    <vSelect 
-      :categories="categories"
-      :selected="selected"
-      @select="sortByCategories"
-      :isExpanded="IS_DESKTOP"
-    />
+    <div class="filters">
+      <vSelect 
+        :categories="categories"
+        :selected="selected"
+        @select="sortByCategories"
+        :isExpanded="IS_DESKTOP"
+      />
+      <div class="range-slider">
+        <input 
+          type="range" min="0" max="10000" step="100"
+          v-model.number="minPrice"
+          @change="setRangeSliders"
+        >
+        <input 
+          type="range" min="0" max="10000" step="100"
+          v-model.number="maxPrice"
+          @change="setRangeSliders"
+        >
+      </div>
+      <div class="range-values">
+        <p>Min: {{minPrice}}</p>
+        <p>Max: {{maxPrice}}</p>
+      </div>
+    </div>
     <div class="v-catalog__list">
       <vCatalogItem
         v-for="product in filteredProducts"
@@ -42,7 +60,9 @@ export default {
         {name: 'Women', value: 2}
       ],
       selected: 'All',
-      sortedProducts: []
+      sortedProducts: [],
+      minPrice: 0,
+      maxPrice: 10000
     }
   },
   computed: {
@@ -67,15 +87,34 @@ export default {
     addToCart(data) {
       this.ADD_TO_CART(data)
     },
+    setRangeSliders() {
+      if (this.minPrice > this.maxPrice) {
+        let tmp = this.maxPrice
+        this.maxPrice = this.minPrice
+        this.minPrice = tmp
+      }
+      this.sortByCategories()
+    },
     sortByCategories(category) {
-      this.sortedProducts = []
+      /* this.sortedProducts = []
       let rem = this
       this.PRODUCTS.map(function(item){
         if (item.category === category.value) {
           rem.sortedProducts.push(item)
         }
       })
-      this.selected = category.name
+      this.selected = category.name */
+      let rem = this
+      this.sortedProducts = [...this.PRODUCTS]
+      this.sortedProducts = this.sortedProducts.filter(function (item) {
+        return item.price >= rem.minPrice && item.price <= rem.maxPrice
+      })
+      if(category) {
+        this.sortedProducts = this.sortedProducts.filter(function (e) {
+          rem.selected = category.name
+          return e.category === category.value
+        })
+      }
     }
   },
   watch: {},
@@ -86,6 +125,7 @@ export default {
         console.log('Completed!')
       }
     })*/
+    this.sortByCategories()
   }
 }
 </script>
@@ -105,4 +145,30 @@ export default {
       border: 1px solid $shadow;
     }
   }
+  .filters {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .range-slider {
+    width: 200px;
+    margin: auto 0;
+    text-align: center;
+    position: relative;
+    background: $shadow;
+  }
+  .range-slider svg, .range-slider input[type=range] {
+    -webkit-appearance: none;
+    width: 100%;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    background: $shadow;
+  }
+  input[type=range]::-webkit-slider-thumb {
+    z-index: 2;
+    position: relative;
+    top: 2px;
+    margin-top: -5px;
+  }  
 </style>
