@@ -20,7 +20,7 @@ let store = new Vuex.Store({
           if (item.id === product.id) {
             isProductExist = true
             item.quantity++
-          } 
+          }
         })
         if (!isProductExist) {
           state.cart.push(product)

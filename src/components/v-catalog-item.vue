@@ -34,7 +34,9 @@ export default {
     }
   },
   watch: {},
-  mounted() {}
+  mounted() {
+    this.$set(this.productData, 'quantity', 1)
+  }
 }
 </script>
 

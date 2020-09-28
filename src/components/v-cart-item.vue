@@ -41,9 +41,7 @@ export default {
     }
   },
   watch: {},
-  mounted() {
-    this.$set(this.cartItemData, 'quantity', 1)
-  }
+  mounted() {}
 }
 </script>
 
