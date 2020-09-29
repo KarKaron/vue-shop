@@ -91,7 +91,7 @@ export default {
     &__quantity span {
       padding: $padding;
       margin: $margin;
-      color: $blue-light;
+      color: $blue;
       cursor: pointer;
     }
     &__btnDelete {

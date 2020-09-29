@@ -1,4 +1,7 @@
 export default {
+  SET_SEARCH_VALUE: (state, value) => {
+    state.searchValue = value
+  },
   SWITCH_MOBILE: (state) => {
     state.isMobile = true
     state.isDesktop = false 

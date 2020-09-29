@@ -98,11 +98,11 @@ export default {
       bottom: 0;
       right: 0;
       left: 0;
-      padding: $padding*3;
+      padding: $padding*2;
       display: flex;
       justify-content: center;
-      background: $green;
-      color: $white;
+      background: $orange;
+      color: $black;
       font-size: 20px;
     }
     .total__name {

@@ -65,8 +65,7 @@ export default {
 <style lang="scss">
   .v-popup {
     position: fixed;
-    top: 100px;
-    width: 400px;
+    top: 15px;
     box-shadow: 0 0 8px $shadow;
     z-index: 9999;
     padding: $padding*2;
@@ -78,13 +77,15 @@ export default {
       align-items: center;
     }
     &__body {
-      display: flex;
       text-align: left;
       align-items: top;
       margin-top: $margin;
+      img {
+        width: 320px!important;
+      }
       p {
         padding: $padding;
-      } 
+      }
     }    
   }
 </style>

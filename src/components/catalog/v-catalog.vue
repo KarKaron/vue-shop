@@ -86,7 +86,8 @@ export default {
     ...mapGetters([
       'PRODUCTS',
       'CART',
-      'IS_DESKTOP'
+      'IS_DESKTOP',
+      'SEARCH_VALUE'
     ]),
     filteredProducts() {
       if (this.sortedProducts.length) {
@@ -139,9 +140,23 @@ export default {
           return e.category === category.value
         })
       }
+    },
+    sortProductsBySearchValue(value) {
+      this.sortedProducts = [...this.PRODUCTS]
+      if (value) {
+        this.sortedProducts = this.sortedProducts.filter(function (item) {
+          return item.name.toLowerCase().includes(value.toLowerCase())
+        })
+      } else {
+        this.sortedProducts = this.PRODUCTS
+      }      
     }
   },
-  watch: {},
+  watch: {
+    SEARCH_VALUE() {
+      this.sortProductsBySearchValue(this.SEARCH_VALUE)
+    }
+  },
   mounted() {
     this.GET_PRODUCTS_FROM_API()
     /*.then((responce) => {
@@ -150,12 +165,15 @@ export default {
       }
     })*/
     this.sortByCategories()
+    this.sortProductsBySearchValue(this.SEARCH_VALUE)
   }
 }
 </script>
 
 <style lang="scss">
   .v-catalog {
+    max-width: 900px;
+    margin: 0 auto;
     &__list {
       display: flex;
       flex-wrap: wrap;
@@ -165,17 +183,17 @@ export default {
     &__link {
       position: absolute;
       top: 10px;
-      right: 10px;
+      right: 25px;
       .cart-icon {
-        font-size: 45px;
-        color: $blue;
+        font-size: 40px;
+        color: $white;
       }
       .cart-item {
         position: absolute;
-        right: 10px;
-        top: 10px;
-        background: $orange;
-        color: $white;
+        right: -20px;
+        top: 8px;
+        background: $shadow;
+        color: $black;
         border-radius: 50%;
         padding: 2px 8px;
       }

@@ -7,7 +7,9 @@
       @closePopup="closeInfoPopup"
       @addToCart="addToCart"
     >
-      <img :src="require('../../assets/images/' + productData.image)" :alt="productData.name">
+      <div>
+        <img :src="require('../../assets/images/' + productData.image)" :alt="productData.name">
+      </div>      
       <div>
         <p class="v-catalog-item__price">Article: <span class="text-blue">{{productData.article}}</span></p>
         <p class="v-catalog-item__price">Price: <span class="text-red">{{productData.price | toFix | formattedPrice}}</span></p>

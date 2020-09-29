@@ -1,4 +1,7 @@
 export default {
+  SET_SEARCH_VALUE({commit}, value) {
+    commit('SET_SEARCH_VALUE', value)
+  },
   SET_MOBILE({commit}) {
     commit('SWITCH_MOBILE')
   },

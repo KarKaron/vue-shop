@@ -3,14 +3,13 @@ $padding-btn: 3px 8px;
 $margin: 8px;
 $radius: 5px;
 $red: #ff0000;
-$blue: #0000ff;
+$blue: #304ffe;
 $blue-light: #00ccff; 
-$orange: #ffcc33;
+$orange: #fdd835;
 $white: #ffffff;
 $black: #000000;
 $green: #009900;
 $shadow: #eaeaea;
-
 
 * {
   margin: 0;
@@ -19,6 +18,14 @@ $shadow: #eaeaea;
 
 h1 {
   margin: $margin*5 0;
+}
+
+a {
+  text-decoration: none;
+}
+
+img {
+  border: none;
 }
 
 .pointer {
@@ -37,10 +44,9 @@ h1 {
   cursor: pointer;
   margin: $margin;
   padding: $padding;
-}
-
-.btn:hover {
-  box-shadow: 0 0 8px $shadow;
+  &:hover {
+    box-shadow: 0 0 8px $shadow;
+  }
 }
 
 .addToCart {
@@ -51,12 +57,11 @@ h1 {
   cursor: pointer;
   padding: $padding-btn;
   margin: $margin 0 $margin $margin;
-}
-
-.addToCart:hover {
-  background: $green;
-  border: 1px solid $green;
-  color: $white;
+  &:hover {
+    background: $green;
+    border: 1px solid $green;
+    color: $white;
+  }
 }
 
 .showInfo {
@@ -67,12 +72,11 @@ h1 {
   cursor: pointer;
   padding: $padding-btn;
   margin: $margin 0 $margin $margin;
-}
-
-.showInfo:hover {
-  background: $orange;
-  border: 1px solid $orange;
-  color: $black;  
+  &:hover {
+    background: $orange;
+    border: 1px solid $orange;
+    color: $black;  
+  }
 }
 
 .overlay {
