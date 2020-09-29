@@ -21,6 +21,18 @@ h1 {
   margin: $margin*5 0;
 }
 
+.pointer {
+  cursor: pointer;
+}
+
+.text-red {
+  color: $red;
+}
+
+.text-blue {
+  color: $blue;
+}
+
 .btn {
   cursor: pointer;
   margin: $margin;
@@ -29,4 +41,49 @@ h1 {
 
 .btn:hover {
   box-shadow: 0 0 8px $shadow;
+}
+
+.addToCart {
+  background: $blue;
+  border: 1px solid $blue;
+  color: $white;
+  border-radius: $radius;
+  cursor: pointer;
+  padding: $padding-btn;
+  margin: $margin 0 $margin $margin;
+}
+
+.addToCart:hover {
+  background: $green;
+  border: 1px solid $green;
+  color: $white;
+}
+
+.showInfo {
+  background: $blue-light;
+  border: 1px solid $blue-light;
+  color: $white;
+  border-radius: $radius;
+  cursor: pointer;
+  padding: $padding-btn;
+  margin: $margin 0 $margin $margin;
+}
+
+.showInfo:hover {
+  background: $orange;
+  border: 1px solid $orange;
+  color: $black;  
+}
+
+.overlay {
+  position: fixed;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1000;
 }

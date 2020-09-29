@@ -1,21 +1,48 @@
 <template>
   <div class="v-catalog-item">
+
+    <vPopup
+      v-if="isInfoPopupVisible"
+      :popupTitle="productData.name"
+      @closePopup="closeInfoPopup"
+      @addToCart="addToCart"
+    >
+      <img :src="require('../../assets/images/' + productData.image)" :alt="productData.name">
+      <div>
+        <p class="v-catalog-item__price">Article: <span class="text-blue">{{productData.article}}</span></p>
+        <p class="v-catalog-item__price">Price: <span class="text-red">{{productData.price}} &#8381;</span></p>
+      </div>      
+    </vPopup>
+
     <img :src="require('../../assets/images/' + productData.image)" :alt="productData.name">
     <p class="v-catalog-item__name">{{productData.name}}</p>
-    <p class="v-catalog-item__price">Price: {{productData.price}} &#8381;</p>
-    <button 
-      class="v-catalog-item__addToCart btn" 
+    <p class="v-catalog-item__price">Price: <span class="text-red">{{productData.price}} &#8381;</span></p>
+    <button
+      class="material-icons showInfo"
+      title="Show info"
+      @click="showPopupInfo"
+    > 
+      remove_red_eye
+    </button>
+    <span 
+      class="material-icons addToCart"
+      title="Add to Cart" 
       @click="addToCart"
     >
-      Add to cart
-    </button>
+      add_shopping_cart
+    </span>    
   </div>
 </template>
 
 <script>
+
+import vPopup from '../popup/v-popup'
+
 export default {
   name: 'v-catalog-item',
-  components: {},
+  components: {
+    vPopup
+  },
   props: {
     productData: {
       type: Object,
@@ -25,12 +52,21 @@ export default {
     }
   },
   data() {
-    return {}
+    return {
+      isInfoPopupVisible: false
+    }
   },
   computed: {},
   methods: {
     addToCart() {
       this.$emit('addToCart', this.productData)
+    },
+    showPopupInfo() {
+      this.isInfoPopupVisible = true
+      //this.$emit('showPopupInfo', this.productData)
+    },
+    closeInfoPopup() {
+      this.isInfoPopupVisible = false
     }
   },
   watch: {},
@@ -46,19 +82,14 @@ export default {
     box-shadow: 0 0 8px $shadow;
     padding: $padding*2;
     margin-bottom: $margin*2;
+    &__name {
+      color: $blue;
+    }
     img {
       width: 250px;
     }
-    &__addToCart {
-      background: $blue;
-      border: 1px solid $blue;
-      color: $white;
-      border-radius: $radius;
-    }
-    &__addToCart:hover {
-      background: $orange;
-      border: 1px solid $orange;
-      color: $black;
-    }    
+    p {
+      padding: $padding*.5;
+    }       
   }  
 </style>

@@ -1,7 +1,11 @@
 <template>
   <div class="v-cart">
     <router-link :to="{name: 'catalog'}">
-      <div class="v-catalog__link btn">Catalog</div>
+      <div class="v-catalog__link">
+        <span class="material-icons cart-icon">
+          keyboard_return
+        </span>
+      </div>
     </router-link>
     <h1>Корзина</h1>
     <p v-if="!cartData.length">They are no products in cart...</p>

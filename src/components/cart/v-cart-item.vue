@@ -3,22 +3,26 @@
     <img class="v-cart-item__image" :src="require('../../assets/images/' + cartItemData.image)" :alt="cartItemData.name">
     <div class="v-cart-item__info">
       <h3>{{cartItemData.name}}</h3>
-      <p>Article: {{cartItemData.article}}</p>
-      <p>Price: {{cartItemData.price}} &#8381;</p>
+      <p>Article: <span class="text-blue">{{cartItemData.article}}</span></p>
+      <p>Price: <span class="text-red">{{cartItemData.price}} &#8381;</span></p>
     </div>
     <div class="v-cart-item__quantity">
       <p>
-        <span class="btn" @click="decrementItem">-</span>
+        <span @click="decrementItem">
+          <i class="material-icons">remove_circle</i>
+        </span>
         {{cartItemData.quantity}}
-        <span class="btn" @click="incrementItem">+</span>
+        <span @click="incrementItem">
+          <i class="material-icons">add_circle</i>
+        </span>
       </p>
     </div>
-    <button
-      class="v-cart-item__btnDelete btn"
+    <span
+      class="v-cart-item__btnDelete"
       @click="deleteCartItem"
     >
-      &times;
-    </button>
+      <i class="material-icons">cancel</i>
+    </span>
   </div>
 </template>
 
@@ -74,29 +78,18 @@ export default {
     }
     &__quantity p {
       margin: $margin;
+      display: flex;
+      align-items: center;
     }
     &__quantity span {
       padding: $padding;
       margin: $margin;
-    }
-    &__quantity .btn {
-      background: $blue-light;
-      color: $white;
-      border: 1px solid $blue-light;
-      border-radius: $radius;
-      padding: $padding-btn !important;
+      color: $blue-light;
+      cursor: pointer;
     }
     &__btnDelete {
-      background: $red;
-      color: $white;
-      border: 1px solid $red;
-      border-radius: $radius;
-      padding: $padding-btn !important;
-    }
-    &__btnDelete:hover {
-      background: $orange;
-      color: $black;
-      border: 1px solid $orange;
-    }
+      color: $red;
+      cursor: pointer;
+    }    
   }  
 </style>

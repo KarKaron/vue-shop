@@ -4,8 +4,8 @@ export default {
     state.isDesktop = false 
   },
   SWITCH_DESKTOP: (state) => {
-    state.isDesktop = true 
-    state.isMobile = false
+    state.isDesktop = /*true*/false 
+    state.isMobile = /*false*/true
   },  
   SET_PRODUCTS_TO_STATE: (state, products) => {
     state.products = products

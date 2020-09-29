@@ -1,7 +1,17 @@
 <template>
   <div class="v-catalog">
     <router-link :to="{name: 'cart', params: {cartData: CART}}">
-      <div class="v-catalog__link btn">Cart: {{CART.length}}</div>
+      <div class="v-catalog__link">
+        <span class="material-icons cart-icon">
+          shopping_cart
+        </span>
+        <span
+          class="cart-item"
+          v-if="CART.length"
+        >
+          {{CART.length}}
+        </span>
+      </div>
     </router-link>
     <h1>Catalog</h1>
     <div class="filters">
@@ -131,7 +141,7 @@ export default {
 </script>
 
 <style lang="scss">
-  .v-catalog {    
+  .v-catalog {
     &__list {
       display: flex;
       flex-wrap: wrap;
@@ -142,7 +152,19 @@ export default {
       position: absolute;
       top: 10px;
       right: 10px;
-      border: 1px solid $shadow;
+      .cart-icon {
+        font-size: 45px;
+        color: $blue;
+      }
+      .cart-item {
+        position: absolute;
+        right: 10px;
+        top: 10px;
+        background: $orange;
+        color: $white;
+        border-radius: 50%;
+        padding: 2px 8px;
+      }
     }
   }
   .filters {
