@@ -4,7 +4,7 @@
     <div class="v-cart-item__info">
       <h3>{{cartItemData.name}}</h3>
       <p>Article: <span class="text-blue">{{cartItemData.article}}</span></p>
-      <p>Price: <span class="text-red">{{cartItemData.price}} &#8381;</span></p>
+      <p>Price: <span class="text-red">{{cartItemData.price | toFix | formattedPrice}}</span></p>
     </div>
     <div class="v-cart-item__quantity">
       <p>
@@ -28,6 +28,9 @@
 
 <script>
 
+import toFix from '../../filters/toFix'
+import formattedPrice from '../../filters/price-format'
+
 export default {
   name: 'v-cart-item',
   components: {},
@@ -41,6 +44,10 @@ export default {
   },
   data() {
     return {}
+  },
+  filters: {
+    toFix,
+    formattedPrice
   },
   computed: {},
   methods: {

@@ -10,13 +10,13 @@
       <img :src="require('../../assets/images/' + productData.image)" :alt="productData.name">
       <div>
         <p class="v-catalog-item__price">Article: <span class="text-blue">{{productData.article}}</span></p>
-        <p class="v-catalog-item__price">Price: <span class="text-red">{{productData.price}} &#8381;</span></p>
+        <p class="v-catalog-item__price">Price: <span class="text-red">{{productData.price | toFix | formattedPrice}}</span></p>
       </div>      
     </vPopup>
 
     <img :src="require('../../assets/images/' + productData.image)" :alt="productData.name">
     <p class="v-catalog-item__name">{{productData.name}}</p>
-    <p class="v-catalog-item__price">Price: <span class="text-red">{{productData.price}} &#8381;</span></p>
+    <p class="v-catalog-item__price">Price: <span class="text-red">{{productData.price | toFix | formattedPrice}}</span></p>
     <button
       class="material-icons showInfo"
       title="Show info"
@@ -37,6 +37,8 @@
 <script>
 
 import vPopup from '../popup/v-popup'
+import toFix from '../../filters/toFix'
+import formattedPrice from '../../filters/price-format'
 
 export default {
   name: 'v-catalog-item',
@@ -55,6 +57,11 @@ export default {
     return {
       isInfoPopupVisible: false
     }
+
+  },
+  filters: {
+    toFix,
+    formattedPrice
   },
   computed: {},
   methods: {
