@@ -1,5 +1,9 @@
 <template>
   <div class="v-catalog">
+    <vNotification 
+      :messages="messages"
+      :timeout="3000"
+    />
     <router-link :to="{name: 'cart', params: {cartData: CART}}">
       <div class="v-catalog__link">
         <span class="material-icons cart-icon">
@@ -54,12 +58,14 @@
 import {mapActions, mapGetters} from 'vuex'
 import vCatalogItem from './v-catalog-item'
 import vSelect from '../v-select'
+import vNotification from '../notifications/v-notification'
 
 export default {
   name: 'v-catalog',
   components: {
     vCatalogItem,
-    vSelect
+    vSelect,
+    vNotification
   },
   props: {},
   data() {
@@ -72,7 +78,8 @@ export default {
       selected: 'All',
       sortedProducts: [],
       minPrice: 0,
-      maxPrice: 10000
+      maxPrice: 10000,
+      messages: []
     }
   },
   computed: {
@@ -96,6 +103,13 @@ export default {
     ]),
     addToCart(data) {
       this.ADD_TO_CART(data)
+      .then(() => {
+        let timeStamp = Date.now().toLocaleString()
+        this.messages.unshift({
+          name: 'Success! Added to Cart',
+          id: timeStamp
+        })
+      })
     },
     setRangeSliders() {
       if (this.minPrice > this.maxPrice) {
